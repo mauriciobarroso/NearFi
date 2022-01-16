@@ -1,0 +1,7 @@
+menu "Buzzer Configuration"
+    config BUZZER_PIN
+        int "Buzzer GPIO"
+        default 4
+        help
+            Set the buzzer GPIO.
+endmenu

@@ -1,0 +1,21 @@
+menu "Application Configuration"
+
+    config APP_RSSI_THRESHOLD_JOIN
+        int "RSSI threshold join"
+        default -40
+        help
+            Minimun RSSI threshold to join the network.
+
+    config APP_RSSI_THRESHOLD_DROP_OUT
+        int "RSSI threshold drop out"
+        default -70
+        help
+            RSSI threshold to drop out a station from the network.
+
+    config APP_RECONNECTION_TIME
+        int "Reconnection time"
+        default 20000
+        help
+            Time to try reconnection in ms.
+
+endmenu

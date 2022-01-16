@@ -1,0 +1,67 @@
+menu "Wifi Configuration"
+
+	choice WIFI_MODE
+	    bool "Wi-Fi mode"
+	    default WIFI_STA
+	    help
+	    	Select Wi-Fi operation mode.
+	
+	config WIFI_AP
+		bool "AP"
+		
+	config WIFI_STA
+		bool "STA"
+		
+	config WIFI_APSTA
+		bool "AP+STA"
+	
+	endchoice		
+		
+    config WIFI_AP_SSID
+        string "AP SSID"
+        default "esp32s2" 
+        depends on WIFI_AP || WIFI_APSTA
+        help
+            Access point target SSID.
+            
+    config WIFI_AP_PASS
+        string "AP password"
+        depends on WIFI_AP || WIFI_APSTA
+        help
+            Access point target password.
+            
+    config WIFI_AP_CHANNEL
+        int "AP channel"
+        default 1
+        depends on WIFI_AP || WIFI_APSTA
+        help
+            Access point target channel.
+            
+    config WIFI_AP_MAX_STA_CONN
+        int "AP maximum connected clients"
+        default 8
+        depends on WIFI_AP || WIFI_APSTA
+        help
+            Maximum number of stations connected.
+
+	config WIFI_PROV_ENABLE
+		bool "Enable provisioning"
+		default y
+		depends on WIFI_STA || WIFI_APSTA
+		help
+			Enable Wi-Fi provisioning service.
+
+    config WIFI_POP_PIN
+        string "Proof of possesion"
+        depends on WIFI_PROV_ENABLE
+        help
+            Proof of possesion string. This is relevant only for protocom security 1.
+
+    config WIFI_SSID_PREFIX
+        string "SSID prefix"
+        default "PROV_"
+        depends on WIFI_PROV_ENABLE
+        help
+        	AP SSID prefix. This is concatenated with the MAC number to build the AP SSID.
+
+endmenu
